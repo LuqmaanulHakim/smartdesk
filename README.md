@@ -197,7 +197,7 @@ The following account is created by the database seeder for local development:
 
 ### Service Abstraction
 
-AI operations are separated behind a `TicketAiService` interface. This keeps controllers and background jobs independent of the specific AI provider.
+AI operations are separated behind a `TicketAiService` interface. This keeps controllers and background jobs independent of the specific AI provider and makes it easier to switch between AI implementations.
 
 ### Structured Classification
 
@@ -207,13 +207,13 @@ If the response is invalid, the system attempts one stricter retry. If validatio
 
 ### Background Processing
 
-Ticket classification is handled through Laravel queued jobs rather than blocking the customer ticket submission process.
+Ticket classification is handled through Laravel queued jobs rather than blocking the customer ticket submission process. This allows customers to submit tickets without waiting for the AI response.
 
 ### Prompt Injection Protection
 
 Customer-provided content is treated as untrusted data and separated from system instructions. The AI is instructed not to follow instructions embedded in customer messages.
 
-The application also validates AI-generated classification values against predefined enums.
+The application also validates AI-generated classification values against predefined enums to ensure that only permitted values are saved.
 
 ### FAQ Knowledge Base
 
@@ -224,6 +224,35 @@ Relevant FAQ entries are included in the AI reply-generation prompt. If no relev
 ### Draft Reply Caching
 
 Generated draft replies are cached per ticket for 10 minutes to reduce unnecessary repeated AI requests.
+
+### AI Provider and Model
+
+SmartDesk uses Google Gemini with the `gemini-3.5-flash-lite` model.
+
+I chose Gemini because it offers a free tier for development and testing, and is straightforward to integrate using Laravel's HTTP client. The selected model is suitable for lightweight tasks such as ticket classification and draft reply generation.
+
+### Handling Invalid AI Responses
+
+The application validates AI responses to ensure they follow the expected JSON structure and contain only permitted values.
+
+If a response is invalid, the application retries once using stricter instructions. If the second attempt also fails, the ticket's AI status is marked as failed and the raw response is logged for debugging. The ticket remains accessible to the support agent.
+
+### Development Information
+
+- **Estimated development time:** 8 hours.
+- **AI coding tool used:** ChatGPT.
+
+ChatGPT was used to help understand the requirements, explore implementation approaches, troubleshoot errors and review parts of the code. The implementation was also tested and reviewed to understand how the application works.
+
+### Future Improvements
+
+- **Semantic FAQ Search:** Improve the current keyword-based FAQ matching to retrieve more relevant information.
+- **AI Monitoring:** Introduce better monitoring and alerts to identify AI service failures and API errors.
+- **Dashboard Analytics:** Add more detailed reports to help agents understand ticket trends and classification results.
+
+### Demo Video
+
+**Video link:** 
 
 ## Running Tests
 
