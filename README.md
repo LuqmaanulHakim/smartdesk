@@ -48,7 +48,7 @@ The system integrates AI-powered ticket classification and reply generation to h
 | Component | Technology |
 |---|---|
 | Backend | PHP, Laravel |
-| Database | MySQL |
+| Database | MySQL, SQLite |
 | Frontend | Blade, JavaScript, CSS |
 | AI Provider | Google Gemini |
 | Background Jobs | Laravel Queue |
@@ -62,15 +62,15 @@ Before installing SmartDesk, ensure the following are available:
 - PHP 8.3+
 - Composer
 - Node.js and npm
-- MySQL 8.0+
-- Laravel 13.17+
+- MySQL 8.0+ or SQLite
+- Required PHP database extensions (`pdo_mysql` for MySQL or `pdo_sqlite` for SQLite)
 
 ## Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/LuqmaanulHakim/smartdesk.git
 cd smartdesk
 ```
 
@@ -102,7 +102,13 @@ Generate the application key:
 php artisan key:generate
 ```
 
-Update the database configuration in `.env`:
+### 4. Configure the Database
+
+SmartDesk supports both MySQL and SQLite. Choose one of the following options.
+
+**Option 1: MySQL**
+
+Create a MySQL database named `smartdesk` and update the database configuration in `.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -113,9 +119,32 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Create a MySQL database named `smartdesk` before proceeding.
+Update the username and password according to your local MySQL configuration.
 
-### 4. Configure AI Settings
+**Option 2: SQLite**
+
+Create an empty SQLite database file:
+
+For Windows PowerShell:
+
+```powershell
+New-Item -ItemType File -Path database\database.sqlite -Force
+```
+
+For macOS/Linux:
+
+```bash
+touch database/database.sqlite
+```
+
+Update the database configuration in `.env`:
+
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+```
+
+### 5. Configure AI Settings
 
 SmartDesk supports two AI drivers.
 
@@ -123,9 +152,10 @@ SmartDesk supports two AI drivers.
 
 ```env
 AI_DRIVER=fake
+AI_API_KEY=
 ```
 
-The fake driver returns predefined AI responses and does not require an external API key. It is suitable for local development and testing.
+The fake driver simulates AI responses without making external API requests or requiring an API key. It is suitable for local development and testing.
 
 **Google Gemini Driver**
 
@@ -140,7 +170,7 @@ Replace `your_gemini_api_key` with your own API key.
 
 Keep API keys private and never commit your actual `.env` file to version control.
 
-### 5. Run Database Migrations and Seeders
+### 6. Run Database Migrations and Seeders
 
 ```bash
 php artisan migrate --seed
@@ -154,7 +184,7 @@ The sample ticket data is provided in:
 database/seeders/sample-tickets.csv
 ```
 
-### 6. Build Frontend Assets
+### 7. Build Frontend Assets
 
 ```bash
 npm run build
@@ -252,7 +282,7 @@ ChatGPT was used to help understand the requirements, explore implementation app
 
 ### Demo Video
 
-**Video link:** 
+**Video link:** To be added.
 
 ## Running Tests
 
@@ -261,6 +291,10 @@ Run the automated test suite using:
 ```bash
 php artisan test
 ```
+
+The test suite was verified in a fresh installation using the Fake AI driver.
+
+**Latest test result:** 30 tests passed (126 assertions).
 
 ## Project Structure
 
