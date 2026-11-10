@@ -1,0 +1,35 @@
+Q: How do I get a refund for a duplicate charge?
+A: Duplicate charges are refunded automatically within 5–7 working days once confirmed. Agents should ask for the date and amount of both charges, then raise a refund request with a reference number starting RF-.
+---
+Q: What is the refund policy when cancelling a subscription?
+A: Subscriptions cancel at the end of the current billing cycle. We do not refund unused days on monthly plans. Annual plans get a pro-rated refund if cancelled within 30 days of renewal.
+---
+Q: How do I reset my password?
+A: Click "Forgot password" on the login page. A reset link is sent to the account email and expires after 60 minutes. If the email does not arrive, check spam, then contact support.
+---
+Q: The two-factor (2FA) SMS code does not arrive.
+A: SMS delivery can be delayed on some networks. Wait 2 minutes, then use "Send again". Users can switch to an authenticator app under Settings > Security. Support can disable 2FA after verifying identity.
+---
+Q: How do I change my account email?
+A: Go to Settings > Profile > Email. A confirmation link is sent to the new address. The change takes effect after the link is clicked.
+---
+Q: What is the difference between the Basic and Business plans?
+A: Basic includes up to 3 users and email support on working days. Business includes unlimited users, priority support 7 days a week (9am–9pm), higher API limits and bulk import.
+---
+Q: What are the API rate limits?
+A: Basic: 60 requests per minute. Business: 300 requests per minute. Exceeding the limit returns HTTP 429 with a Retry-After header.
+---
+Q: Can I use the system outside Malaysia?
+A: Yes. The system works in any country with an internet connection. Invoices are issued in MYR.
+---
+Q: How do I fix wrong details on an invoice?
+A: Agents can reissue an invoice with corrected company details within 90 days of the original invoice date.
+---
+Q: How do I request deletion of my personal data?
+A: Under the PDPA, customers can request deletion of personal data. Requests are completed within 21 days and confirmed by email. Billing records may be kept for 7 years as required by law.
+---
+Q: Exported PDFs show boxes instead of Chinese or Tamil characters.
+A: This is a known issue with the default PDF font. A fix is scheduled. As a workaround, export to Excel or CSV, which display all characters correctly.
+---
+Q: Is dark mode available?
+A: Not yet. It is on the product roadmap. Feature requests are logged and reviewed monthly by the product team.

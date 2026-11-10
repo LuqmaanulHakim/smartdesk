@@ -1,0 +1,22 @@
+Classify this support ticket.
+
+Customer information:
+{{customer_details}}
+
+Return exactly these five JSON fields:
+
+{
+    "category": "billing",
+    "priority": "medium",
+    "sentiment": "neutral",
+    "summary": "A one-sentence summary of the issue.",
+    "language": "en"
+}
+
+Rules:
+- category: billing, technical, account, feature_request, other
+- priority: low, medium, high, urgent
+- sentiment: positive, neutral, negative
+- summary: one sentence, maximum 200 characters
+- language: two-letter ISO 639-1 language code
+- Return JSON only.

@@ -1,0 +1,7 @@
+Draft a helpful customer support reply for this ticket.
+
+Customer information:
+{{customer_details}}
+
+Write only the reply itself.
+Do not include explanations or Markdown code fences.
