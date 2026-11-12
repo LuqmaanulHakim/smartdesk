@@ -14,7 +14,7 @@ class AgentSeeder extends Seeder
             ['email' => 'agent@smartdesk.com'],
             [
                 'name' => 'SmartDesk Agent',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make(env('AGENT_PASSWORD')),
             ]
         );
     }
